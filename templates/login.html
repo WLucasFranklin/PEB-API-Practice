@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div class="login-box">
+  <h2>Login</h2>
+
+  <p>Click to log in with GitHub.</p>
+    <a class="github-login" href="{{ url_for('login') }}">
+    <img src="{{ url_for('static', filename='github.ico') }}" alt="GitHub" width="48" height="48">
+    </a>
+
+  <h3>Or login with username/password</h3>
+  <form method="post" action="{{ url_for('password_login') }}">
+    <label>Username: <input name="username"></label><br>
+    <label>Password: <input name="password" type="password"></label><br>
+    <button type="submit">Login</button>
+  </form>
+    {% if error %}<p style="color:red">{{ error }}</p>{% endif %}
+  <p><a href="{{ url_for('signup_page') }}">Create username/password account</a></p>
+</div>
+
+
+
+{% endblock %}

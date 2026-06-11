@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>Welcome, {{ username }}!</h2>
+
+<h3>Create API Key</h3>
+<form method="post" action="{{ url_for('create_api_key_from_dashboard') }}">
+    <label>Key name:&nbsp;&nbsp;&nbsp;<input name="label"></label><br>
+
+    <label>
+        Permission:
+        <select name="permissions">
+            <option value="read">Read</option>
+            <option value="write">Write</option>
+        </select>
+    </label><br>
+
+    <button type="submit">Create API Key</button>
+</form>
+
+{% if new_api_key %}
+<p><strong>New API key:</strong> {{ new_api_key }}</p>
+<p>Save this now. You will not be able to see it again.</p>
+
+<!-- Play a beep sound to alert the user 
+<audio autoplay>
+    <source src="{{ url_for('static', filename='beep.mp3') }}" type="audio/mpeg">
+</audio>
+-->
+
+
+{% endif %}
+
+<!--
+{% if revoked %}
+<p><strong>API key revoked.</strong></p>
+
+<audio autoplay>
+    <source src="{{ url_for('static', filename='revoke.mp3') }}" type="audio/mpeg">
+</audio>  
+{% endif %}
+-->
+
+<h3>Your API keys and permissions:</h3>
+<table class="api-key-table">
+    <tr>
+        <th>Name</th>
+        <th>Permissions</th>
+        <th>Action</th>
+    </tr>
+    {% for key_id, key in api_keys.items() %}
+    <tr>
+        <td>{{ key.label }}</td>
+        <td>{{ key.permissions|join(', ') }}</td>
+        <td>
+            <form method="post" action="{{ url_for('delete_api_key_from_dashboard', key_id=key_id) }}" style="display:inline">
+                <button class="danger-button" type="submit">Revoke</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+<a href="/logout">Logout</a>
+
+{% endblock %}
