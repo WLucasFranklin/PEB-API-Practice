@@ -1,3 +1,10 @@
+## Setup
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+
 ## Optional HTTPS / Nginx Reverse Proxy Setup
 - Nginx listens on 80 and 443
 - Port 80 redirects to 443

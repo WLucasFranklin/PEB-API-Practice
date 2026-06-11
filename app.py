@@ -101,13 +101,6 @@ def after(resp):
 #----------------------------------------------
 @app.route("/")
 def login_page():
-    """
-    Shows login page.
-
-    Example:
-      Open in browser:
-        http://localhost:8000/
-    """
     return render_template("login.html")
 
 @app.route("/api/resources")
@@ -288,7 +281,7 @@ def create_api_key_from_dashboard():
     )
 
     session["new_api_key"] = raw_key
-    
+
     return redirect(url_for("dashboard"))
 
 @app.route("/dashboard/api-keys/delete/<key_id>", methods=["POST"])
@@ -309,13 +302,6 @@ def delete_api_key_from_dashboard(key_id):
 
 @app.route("/logout")
 def logout():
-    """
-    Logs user out by clearing session.
-
-    Example:
-      Open in browser:
-        http://localhost:8000/logout
-    """
     session.clear()
     return redirect(url_for("login_page"))
 
