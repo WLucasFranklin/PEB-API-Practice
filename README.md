@@ -22,6 +22,13 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
+### Environment Variables
+
+Create a `.env` file in the project root:
+
+```bash
+cp .env.example .env
+```
 
 ### Optional HTTPS / Nginx Reverse Proxy Setup
 - Nginx listens on 80 and 443
@@ -56,7 +63,7 @@ server {
         proxy_set_header X-Forwarded-Proto https;
     }
 }
-```
+
 
 ## Running the Application
 
