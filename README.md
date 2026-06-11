@@ -1,4 +1,4 @@
-##Optional HTTPS / Nginx Reverse Proxy Setup
+## Optional HTTPS / Nginx Reverse Proxy Setup
 - Nginx listens on 80 and 443
 - Port 80 redirects to 443
 - Port 443 proxies to Gunicorn on 127.0.0.1:8000
